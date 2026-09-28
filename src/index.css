@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-hand: 'Caveat', cursive;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #F7F3EA;
+    color: #111111;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  .font-hand {
+    font-family: var(--font-hand);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Hard ink shadows (neo-brutalist / editorial sketchbook) */
+.shadow-ink {
+  box-shadow: 4px 4px 0px #111111;
+}
+
+.shadow-ink-sm {
+  box-shadow: 2px 2px 0px #111111;
+}
+
+.shadow-ink-lg {
+  box-shadow: 6px 6px 0px #111111;
+}
+
+.shadow-ink-hover {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shadow-ink-hover:hover {
+  transform: translate(-2px, -2px) rotate(-0.5deg);
+  box-shadow: 6px 6px 0px #111111;
+}
+
+.shadow-ink-hover:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #111111;
+}
+
+/* Washi tape realistic tape effect with ragged edges */
+.washi-tape {
+  position: relative;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.15) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  clip-path: polygon(
+    0% 0%,
+    5% 20%,
+    0% 40%,
+    4% 60%,
+    0% 80%,
+    3% 100%,
+    100% 100%,
+    97% 80%,
+    100% 60%,
+    96% 40%,
+    100% 20%,
+    98% 0%
+  );
+}
+
+.washi-tape-straight {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  clip-path: polygon(
+    0% 0%,
+    3% 50%,
+    0% 100%,
+    100% 100%,
+    97% 50%,
+    100% 0%
+  );
+}
+
+/* Notebook paper subtle dot grid background pattern */
+.bg-sketchbook-grid {
+  background-image: radial-gradient(#d5cebe 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+/* Paper craft edge and stamp effects */
+.stamp-support {
+  border: 2px dashed #b5aea2;
+  border-radius: 9999px;
+  transform: rotate(-8deg);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Subtle hand-drawn border curve */
+.border-sketch {
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+/* Custom ink stroke keyframe for SVG paths */
+@keyframes drawOn {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawOn 1.2s ease-out forwards;
+}
+
+/* Print styles for downloading/printing pristine CV */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .shadow-ink, .shadow-ink-lg, .shadow-ink-sm {
+    box-shadow: none !important;
+    border: 1px solid #222 !important;
+  }
+}
